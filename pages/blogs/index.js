@@ -3,9 +3,9 @@ import Link from "next/link"
 
 
 import Header from "../../components/Header"
-import { useUserContext } from "../../scripts/Provider/UserProvider"
+import { useUserContext } from "../../public/scripts/Provider/UserProvider"
 import { Item } from "../../components/blogs"
-import { serverUrl } from "../../scripts/_setting"
+import { serverUrl } from "../../public/scripts/_setting"
 
 export const getServerSideProps = async ()=>{
     const res = await fetch(serverUrl+"blogs");

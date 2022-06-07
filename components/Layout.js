@@ -1,6 +1,6 @@
 import Nav from "./Nav"
 import Footer from "./Footer"
-import { UserProvider } from "../scripts/Provider/UserProvider"
+import { UserProvider } from "../public/scripts/Provider/UserProvider"
 
 const Layout = ({children}) => {
   return (

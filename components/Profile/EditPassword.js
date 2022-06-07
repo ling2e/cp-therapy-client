@@ -1,10 +1,10 @@
 import axios from "axios"
 import { useRouter } from "next/router"
 import { useState } from "react"
-import { serverUrl } from "../../scripts/_setting"
+import { serverUrl } from "../../public/scripts/_setting"
 import Alert from "../Alert";
-/* eslint-disable */
-export default ({userId}) => {
+
+export default function EditPassword({userId}){
     const router = useRouter()
     const [password,setPassword] = useState({
         oldPass :"",

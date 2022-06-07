@@ -5,12 +5,12 @@ import Head from "next/head"
 
 import Loading from "../../../components/Loading"
 import Custom404 from "../../_error"
-import { serverUrl } from "../../../scripts/_setting"
+import { serverUrl } from "../../../public/scripts/_setting"
 import Header from "../../../components/Header"
 import Alert from "../../../components/Alert"
-import { useUserContext } from "../../../scripts/Provider/UserProvider"
-/* eslint-disable */
-export default () => {
+import { useUserContext } from "../../../public/scripts/Provider/UserProvider"
+
+export default function Edit() {
     const router = useRouter()
     const id = router.query.id
     const userCxt = useUserContext()

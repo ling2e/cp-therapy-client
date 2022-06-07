@@ -1,10 +1,10 @@
 import axios from "axios"
 import { useRouter } from "next/router"
 import {useState} from "react"
-import { serverUrl } from "../../scripts/_setting"
-/* eslint-disable */
+import { serverUrl } from "../../public/scripts/_setting"
+
 import Alert from "../Alert";
-export default ({data}) => {
+export default function EditInfo({data}){
     const router = useRouter()
     const [newInfo, setInfo] = useState({
         username : data.username,

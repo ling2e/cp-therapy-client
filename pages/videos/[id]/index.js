@@ -1,18 +1,17 @@
-/* eslint-disable */
 import { useRouter } from "next/router"
 import { useState } from "react"
 import Head from "next/head"
 import axios from "axios"
 
 import Loading from "../../../components/Loading"
-import {serverUrl} from "../../../scripts/_setting"
+import {serverUrl} from "../../../public/scripts/_setting"
 import Custom404 from "../../_error"
-import { useUserContext } from "../../../scripts/Provider/UserProvider";
+import { useUserContext } from "../../../public/scripts/Provider/UserProvider";
 import SideEdit from "../../../components/videos/SideEdit";
 import Alert from "../../../components/Alert"
 
 
-export default function video() {
+export default function VideoId() {
     const router = useRouter()
     const id = router.query.id
     const userCxt = useUserContext()

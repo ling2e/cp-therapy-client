@@ -3,12 +3,11 @@ import { useRouter } from "next/router";
 import { useState } from "react";
 import axios from "axios";
 
-import { useUserContext } from "../../scripts/Provider/UserProvider";
+import { useUserContext } from "../../public/scripts/Provider/UserProvider";
 import Custom404 from "../_error";
-import { serverUrl } from "../../scripts/_setting";
+import { serverUrl } from "../../public/scripts/_setting";
 import Alert from "../../components/Alert";
-/* eslint-disable */
-export default () => {
+export default function VideoUpload () {
     const userCxt = useUserContext()
     const router = useRouter()
 

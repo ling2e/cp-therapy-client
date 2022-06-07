@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import VideoItem from "../../components/videos/Item"
 import Header from "../../components/Header";
-import { serverUrl } from "../../scripts/_setting";
-import { useUserContext } from "../../scripts/Provider/UserProvider";
+import { serverUrl } from "../../public/scripts/_setting";
+import { useUserContext } from "../../public/scripts/Provider/UserProvider";
 
 export const getServerSideProps = async () => {
     const res = await fetch(serverUrl+"videos");

@@ -1,11 +1,11 @@
 import axios from "axios"
 import { useState } from "react"
-import { serverUrl ,server} from "../../scripts/_setting"
+import { serverUrl ,server} from "../../public/scripts/_setting"
 import { useRouter } from "next/router";
 import Alert from "../Alert";
 
-/* eslint-disable */
-export default ({data}) => {
+
+export default function EditAvatar({data}){
 
     const [hvChange , setHvChange] = useState(false)
     const [avatarSrc , setAvatarSrc] = useState(serverUrl+data.avatar)

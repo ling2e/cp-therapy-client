@@ -1,6 +1,6 @@
 import Link from "next/link"
-import { serverUrl } from "../../scripts/_setting"
-/* eslint-disable */
+import { serverUrl } from "../../public/scripts/_setting"
+
 const Item = ({videoAva,title,desc,Author,viewCount,id,videoUrl})=>{
     return (
         <>

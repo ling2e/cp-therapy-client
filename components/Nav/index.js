@@ -1,9 +1,9 @@
 import Link from "next/link"
 import {useState,useEffect} from "react"
 import {useRouter} from "next/router"
-/* eslint-disable */
-import { useUserContext } from "../../scripts/Provider/UserProvider"
-import { serverUrl } from "../../scripts/_setting"
+
+import { useUserContext } from "../../public/scripts/Provider/UserProvider"
+import { serverUrl } from "../../public/scripts/_setting"
 
 const Nav = () => {
   const router = useRouter()

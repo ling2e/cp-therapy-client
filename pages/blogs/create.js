@@ -1,17 +1,17 @@
-/* eslint-disable */
+
 
 import React, { useState } from 'react'
 import Head from 'next/head'
 import axios from 'axios'
 
 import Custom404 from '../_error'
-import { useUserContext } from '../../scripts/Provider/UserProvider'
+import { useUserContext } from '../../public/scripts/Provider/UserProvider'
 import { useRouter } from 'next/router'
 import Alert from '../../components/Alert'
-import { serverUrl } from '../../scripts/_setting'
+import { serverUrl } from '../../public/scripts/_setting'
 import Header from '../../components/Header'
 
-export default function() {
+export default function Create() {
   const userCxt = useUserContext()
   const router = useRouter()
 

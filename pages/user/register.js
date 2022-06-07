@@ -3,8 +3,8 @@ import Head from "next/head"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { useState } from "react"
-import { serverUrl } from "../../scripts/_setting"
-/* eslint-disable */
+import { serverUrl } from "../../public/scripts/_setting"
+
 export default function Register() {
     let router = useRouter()
 
@@ -103,7 +103,7 @@ export default function Register() {
                         <>
                         <div className="alert alert-success shadow-lg  max-w-max pr-10 mt-2" data-aos="zoom-in">
                     <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                         <span>Success Created Account!</span>
                     </div>
                 </div>
@@ -111,7 +111,7 @@ export default function Register() {
                 <Link href={"/user/login"}>
                     <div className="alert alert-success shadow-lg cursor-pointer max-w-max pr-10 mt-2" data-aos="zoom-in">
                         <div>
-                            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                            <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                             <span>Click on me go to Login Page</span>
                         </div>
                     </div>

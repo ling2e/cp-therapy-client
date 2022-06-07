@@ -1,20 +1,20 @@
-/* eslint-disable */
+
 import Head from "next/head";
 import { useState } from "react";
 
 
-import { useUserContext } from "../../scripts/Provider/UserProvider";
+import { useUserContext } from "../../public/scripts/Provider/UserProvider";
 import Loading from "../../components/Loading";
 import Custom404 from "../_error";
 import axios from "axios";
-import { serverUrl } from "../../scripts/_setting";
+import { serverUrl } from "../../public/scripts/_setting";
 import { useRouter } from "next/router";
 import EditAvatar from "../../components/Profile/EditAvatar";
 import EditInfo from "../../components/Profile/EditInfo";
 import EditPassword from "../../components/Profile/EditPassword";
 
 
-export default ()=>{
+export default function UserEdit(){
     const userCxt = useUserContext()
     const router = useRouter()
     const [onLoading , setLoading] = useState(true)

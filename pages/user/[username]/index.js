@@ -4,15 +4,15 @@ import axios from "axios"
 import { useState } from "react"
 import Head from "next/head"
 
-import {serverUrl} from "../../../scripts/_setting"
+import {serverUrl} from "../../../public/scripts/_setting"
 import Loading from "../../../components/Loading"
 import Custom404 from "../../_error"
-import { useUserContext } from "../../../scripts/Provider/UserProvider"
+import { useUserContext } from "../../../public/scripts/Provider/UserProvider"
 import { Item as BlogItem}  from "../../../components/blogs"
 import VideoItem from "../../../components/videos/Item"
 import Alert from "../../../components/Alert"
-/* eslint-disable */
-export default () => {
+
+export default function UserUsername() {
     const router = useRouter()
     const username = router.query.username
     const userCxt = useUserContext()

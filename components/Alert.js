@@ -1,5 +1,5 @@
-/* eslint-disable */
-export default ({type = "success" ,onClick, children}) => {
+
+export default function Alert({type = "success" ,onClick, children}){
     return (<>
         <div className='fixed bottom-4 left-4 z-50 alertBox' onClick={onClick}>
             <div className={`alert shadow-lg max-w-max px-10 cursor-pointer alert-${type}`} data-aos="zoom-in">

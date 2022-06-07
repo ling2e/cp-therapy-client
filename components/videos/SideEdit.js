@@ -1,9 +1,9 @@
 import { useState } from "react"
 import { useRouter } from "next/router"
 import axios from "axios"
-import { serverUrl } from "../../scripts/_setting"
-/* eslint-disable */
-export default function({data,onClick}) {
+import { serverUrl } from "../../public/scripts/_setting"
+
+export default function SideEdit({data,onClick}) {
     const router =useRouter()
     const [updateData , setUpdateData] = useState({
         title : data.title,

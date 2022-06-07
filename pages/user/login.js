@@ -3,8 +3,8 @@ import Link from "next/link"
 import { useState} from "react"
 import { useRouter } from "next/router"
 import axios from "axios"
-/* eslint-disable */
-import { serverUrl } from "../../scripts/_setting"
+
+import { serverUrl } from "../../public/scripts/_setting"
 
 export default function Login() {
     const router = useRouter()
@@ -87,7 +87,7 @@ export default function Login() {
                                 <input type="password" placeholder="Password" className="input input-bordered " name="password" onChange={e=> setPassword(e.target.value)}/>
                             </label>
                         </div>
-                        <p className="text-sm text-gray-500">Don't have account ? <Link href="/user/register" ><span className="text-blue-700 font-semibold cursor-pointer">Click Here</span></Link></p>
+                        <p className="text-sm text-gray-500">Don&apos;t have account ? <Link href="/user/register" ><span className="text-blue-700 font-semibold cursor-pointer">Click Here</span></Link></p>
                         <div className="card-actions justify-end">
                             <button className="btn btn-primary px-14 " onClick={Login}>Login</button>
                         </div>

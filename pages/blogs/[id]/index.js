@@ -4,14 +4,14 @@ import axios from "axios"
 import Link from "next/link"
 import Head from "next/head"
 
-import {serverUrl} from "../../../scripts/_setting"
+import {serverUrl} from "../../../public/scripts/_setting"
 import Loading from "../../../components/Loading"
 import Custom404 from "../../_error"
 import Header from "../../../components/Header"
-import { useUserContext } from "../../../scripts/Provider/UserProvider";
+import { useUserContext } from "../../../public/scripts/Provider/UserProvider";
 import Alert from "../../../components/Alert";
-/* eslint-disable */
-export default ()=>{
+
+export default function BlogsId(){
     const router = useRouter()
     const id = router.query.id
 
