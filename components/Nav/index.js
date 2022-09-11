@@ -42,7 +42,7 @@ const Nav = () => {
                 <div className="avatar ml-4 dropdown dropdown-end dropdown-hover">
                   <div className="w-12 mask mask-hexagon cursor-pointer" tabIndex="0">
                   
-                    <img src={serverUrl+userContext.userAvatar} />
+                    <img src={userContext.userAvatar} />
                   </div>
                     <ul tabIndex="0" className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52 text-gray-600 flex-wrap">
                       <li className="block w-full">

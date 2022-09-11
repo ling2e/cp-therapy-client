@@ -74,6 +74,7 @@ export default function Register() {
             }
         })
         .catch(res => {
+            console.log(res)
             if(res.response.status == 409){
                 return onNotice("User already exists!")
             }

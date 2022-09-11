@@ -8,7 +8,7 @@ import Alert from "../Alert";
 export default function EditAvatar({data}){
 
     const [hvChange , setHvChange] = useState(false)
-    const [avatarSrc , setAvatarSrc] = useState(serverUrl+data.avatar)
+    const [avatarSrc , setAvatarSrc] = useState(data.avatar)
     const router = useRouter()
     const [alert, setAlert] =useState({show:false,type:"success",desc:"Ok"}) 
 

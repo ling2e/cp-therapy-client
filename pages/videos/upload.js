@@ -28,8 +28,15 @@ export default function VideoUpload () {
             if(!newPost.title.trim() || !newPost.description.trim() || !newPost.files || !newPost.videoAvatar) return(
                 setAlert({...alert , show:true ,type:"warning", content : "The form cant have a empty!"})
             )
+            let formData = new FormData()
+            let newData = {...newPost , ...userCxt};
+            console.log(newPost)
+            for ( let i in newData ) {
+                formData.append(i, newData[i]);
+            }
+            
 
-            await axios.post(serverUrl+"videos/upload",{...newPost , ...userCxt},{
+            await axios.post(serverUrl+"videos/upload",formData,{
                 headers: {
                   'Content-Type': 'multipart/form-data'
                 }
@@ -38,7 +45,9 @@ export default function VideoUpload () {
                     setAlert({...alert , show:true ,type:"success", content : "Success Created!"})
                     router.push("/videos/"+res.data)
                 })
-                .catch(e=>setAlert({...alert , show:true , type:"error" , content : "Something is going wrong! Please try again"}))
+                .catch(e=>{
+                    setAlert({...alert , show:true , type:"error" , content : "Something is going wrong! Please try again"})
+                })
         }
         const videoTypeChecker = (e)=>{
             if(!e.target.files[0]) return

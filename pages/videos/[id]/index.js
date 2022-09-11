@@ -47,15 +47,15 @@ export default function VideoId() {
 
                     <section className="container mx-auto py-6 min-h-screen">
                         <article className="flex flex-wrap lg:flex-nowrap justify-between">
-                            <video id="videoPlayer" controls className="w-full lg:w-9/12 rounded-xl mx-auto">
-                                <source src={`${serverUrl}videos/${id}`} type="video/mp4"/>
+                            <video id="videoPlayer" controls className="w-full lg:w-9/12 rounded-xl mx-auto h-max">
+                                <source src={`${data.videoUrl}`} type="video/mp4"/>
                             </video>
                             <div className="w-full lg:w-3/12 pl-6 py-4">
     
                                 {editMode ? (<>
                                     <SideEdit data={data} onClick={e=>setEditMode(false)}/>
                                 </>):(<>
-                                    <h3 className="font-bold text-2xl">{data.title}</h3>
+                                    <h3 className="font-bold text-xl">{data.title}</h3>
                                     <div className="divider"></div>
                                     <p>{data.description}</p>
                                     <div className="divider w-full"></div>
