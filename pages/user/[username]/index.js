@@ -59,7 +59,7 @@ const [alert, setAlert] =useState({show:false,type:"success",desc:"Ok"})
                     <article className="head flex flex-nowrap w-full items-end gap-x-4">
                         <div className="avatar">
                             <div className="lg:w-52 md:w-44 w-24 mask mask-hexagon">
-                                <img  className="select-none" src={serverUrl+user.avatar} />
+                                <img  className="select-none" src={user.avatar} />
                             </div>
                         </div>
                         <div className="grid grid-cols-1 gap-y-2 mb-5">
