@@ -94,7 +94,7 @@ export default function Login() {
                             (<button className="btn btn-primary block w-full " onClick={Login}>Login</button>) : 
                             (<button className="btn btn-primary px-14 loading block w-full" disabled></button>)}
                         </div>
-                        <div class="divider m-0"></div> 
+                        <div className="divider m-0"></div> 
                         <div className="card-actions gap-0">
                             <p className="text-sm text-gray-500">Don&apos;t have account ? </p>
                             <Link href="/user/register" ><button className="btn block w-full ">Register</button></Link>

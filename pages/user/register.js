@@ -202,7 +202,7 @@ export default function Register() {
                                 <p className="text-sm text-gray-500">Already have an account ?</p>
                                 <Link href="/user/login" ><button className="btn px-14 w-full">Login</button></Link>
                             </div>
-                            <div class="divider lg:divider-horizontal"></div>
+                            <div className="divider lg:divider-horizontal"></div>
                             {!isLoading ? 
                             (<button className="btn btn-primary px-14 " onClick={checkInFill}>Register</button>) : 
                             (<button className="btn btn-primary px-[4.6rem] loading " disabled></button>)}
