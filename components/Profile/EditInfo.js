@@ -10,8 +10,10 @@ export default function EditInfo({data}){
         username : data.username,
         email : data.email
     })
+    const [isLoading , setLoading] = useState(false)
 const [alert, setAlert] =useState({show:false,type:"success",desc:"Ok"}) 
     const doUpdate =() =>{
+        setLoading(true)
         if(!newInfo.email || !newInfo.username) return ("Empty")
 
         axios.put(serverUrl+"profile/"+data._id,newInfo)
@@ -22,9 +24,11 @@ const [alert, setAlert] =useState({show:false,type:"success",desc:"Ok"})
                         router.reload()
                     }
                 }
+                setLoading(false)
             })
             .catch(err=>{
                 if(err.response.status == 409) return setAlert({...alert , show:true , type:"error",desc:"Username already exits!"})
+                setLoading(false)
                 
                 setAlert({...alert , show:true , type:"error",desc:"Something Wrong!"})
             })
@@ -41,7 +45,10 @@ const [alert, setAlert] =useState({show:false,type:"success",desc:"Ok"})
             <div className="divider"></div>
             <div className="flex gap-x-4 justify-end">
                 <input type="button" value="Cancel" className="btn btn-warning" onClick={e=>router.reload()}/>
-                <input type="button" value="Save" className="btn btn-success" onClick={e=>{doUpdate()}}/>    
+                {!isLoading ? 
+                <input type="button" value="Save" className="btn btn-success" onClick={e=>{doUpdate()}}/>     : 
+                <input type="button" value="Saving..." className="btn btn-success" disabled />    
+                }
             </div>
         </div>
     </>)

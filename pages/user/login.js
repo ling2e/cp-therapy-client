@@ -12,26 +12,28 @@ export default function Login() {
     const [password , setPassword] = useState("")
     const [wrongPass , setWrongPass] = useState(false)
     const [userFound , setUserFound] = useState(true)
+    const [isLoading, setLoading] = useState(false)
 
     if(typeof(window) != "undefined"){
         if(localStorage.getItem("token")) router.push("/")
     }
     const Login = async () =>{
+        setLoading(true);setWrongPass(false)
         await axios.post(serverUrl+"auth/login",{
             username,
             password
         }).then(msg=>{
             let user = msg.data
+            
             if(user.wrongPass) return setWrongPass(true)
             localStorage.setItem("token",user["accessToken"])
             router.reload()
+            setLoading(false)
         })
         .catch(res=>{
-            
+            setLoading(false)
             if(res.response.status == 404) return setUserFound(false)
             return setWrongPass(true)
-            // }
-            // return console.log(err)
         }
         )
     }
@@ -87,9 +89,15 @@ export default function Login() {
                                 <input type="password" placeholder="Password" className="input input-bordered " name="password" onChange={e=> setPassword(e.target.value)}/>
                             </label>
                         </div>
-                        <p className="text-sm text-gray-500">Don&apos;t have account ? <Link href="/user/register" ><span className="text-blue-700 font-semibold cursor-pointer">Click Here</span></Link></p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary px-14 " onClick={Login}>Login</button>
+                        <div className="card-actions ">
+                            {!isLoading ? 
+                            (<button className="btn btn-primary block w-full " onClick={Login}>Login</button>) : 
+                            (<button className="btn btn-primary px-14 loading block w-full" disabled></button>)}
+                        </div>
+                        <div class="divider m-0"></div> 
+                        <div className="card-actions gap-0">
+                            <p className="text-sm text-gray-500">Don&apos;t have account ? </p>
+                            <Link href="/user/register" ><button className="btn block w-full ">Register</button></Link>
                         </div>
                 </div>
             </section>

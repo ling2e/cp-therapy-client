@@ -1,0 +1,11 @@
+.ql-container.ql-bubble{
+    border:none;
+}
+
+.ql-container.ql-bubble .ql-editor{
+    height: 10rem;
+    overflow-y: scroll;
+}
+.sideEdit .ql-container.ql-bubble .ql-editor{
+    height: 17.5rem;
+}

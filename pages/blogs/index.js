@@ -9,6 +9,7 @@ import { serverUrl } from "../../public/scripts/_setting"
 
 export const getServerSideProps = async ()=>{
     const res = await fetch(serverUrl+"blogs");
+    // console.log()
     const blogs = await res.json()
     return ({
         props : {
@@ -23,6 +24,8 @@ export default function Blog({blogs}) {
         <>
             <Head >
                 <title>Blog</title>
+                <link rel="stylesheet" href="https://unpkg.com/react-quill@1.3.3/dist/quill.snow.css" />
+                <link rel="stylesheet" href="/_assets/css/blogs-create.css" />
             </Head>
             <div className="min-h-screen">
                 <Header backgroundPosition="center 20%">

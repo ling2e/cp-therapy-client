@@ -8,7 +8,7 @@ export const Item = ({
             <div className="card bg-base-100 shadow-xl cursor-pointer">
                 <div className="card-body">
                     <h2 className="card-title">{data.title}</h2>
-                    <p className="truncate text-gray-800">{data.description}</p>
+                    <p className="truncate text-gray-800">{data.description.replace(/(?=\<)(.*?)(?=\>)>/g, " ")}</p>
                     <div className="divider"></div>
                     <div className="card-actions justify-between items-end">
                         <p className="text-sm text-gray-500">By {data.author}</p>

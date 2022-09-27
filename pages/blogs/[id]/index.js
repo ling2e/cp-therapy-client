@@ -16,6 +16,7 @@ export default function BlogsId(){
     const id = router.query.id
 
     const [data ,setData] = useState()
+    const [content , setContent] = useState()
     const [onLoading , setOnLoading] = useState(true)
     const userCxt = useUserContext()
 
@@ -47,6 +48,8 @@ export default function BlogsId(){
         return(<>
                 <Head>
                     <title className="capitalize">{data.title} | Blog</title>
+                    <link rel="stylesheet" href="https://unpkg.com/react-quill@1.3.3/dist/quill.snow.css" />
+                    <link rel="stylesheet" href="/_assets/css/blogs-create.css" />
                 </Head>
                 {alert.show? (<Alert type={alert.type} onClick={e=>setAlert({...alert , show:false})}>{alert.desc}</Alert>):""}
                 <section className="min-h-screen">
@@ -54,7 +57,10 @@ export default function BlogsId(){
                     <article className="container mx-auto py-6 ">
                         <h2 className="capitalize text-3xl font-semibold">{data.title}</h2>
                         <div className="divider"></div>
-                        <p className="text-gray-700 min-h-16">{data.description}</p>
+                        {/* <div dangerouslySetInnerHTML={data.description}></div> */}
+                        <div className="text-gray-700 min-h-16 ql-container ql-snow"> 
+                            <div className="ql-editor" dangerouslySetInnerHTML={{ __html: data.description }}></div> 
+                        </div>
                         <div className="divider"></div>
                         <footer className="flex justify-between text-gray-500 h-16 items-center">
                             <p>By : <Link href={`/user/${data.author}`} className="cursor-pointer">{data.author}</Link></p>

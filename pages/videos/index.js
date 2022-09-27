@@ -34,7 +34,7 @@ const Videos = ({data})=>{
                 {userCxt ? (<nav className="mb-4"><Link href="/videos/upload"><a className="btn btn-primary">Upload</a></Link></nav>): ""}
                     {videos.length ? 
                         (
-                            <article className="w-full grid justify-center grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-12">
+                            <article className="w-full grid justify-center grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-12">
                                 {videos.map(video=>(
                                     <VideoItem
                                         key={video._id}
@@ -51,7 +51,6 @@ const Videos = ({data})=>{
                         :
                         (
                             <>
-                                
                                 <div className="alert alert-info shadow-lg" data-aos="zoom-in">
                                     <div>
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current flex-shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>

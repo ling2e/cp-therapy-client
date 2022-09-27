@@ -12,6 +12,7 @@ export default function Register() {
         localStorage.getItem("token") ? router.push("/") : false
     }
 
+    const [isLoading , setLoading] = useState(false)
     const [newUserDetails,setNewUserDetails] = useState({
         firstName : "",
         lastName : "",
@@ -58,9 +59,11 @@ export default function Register() {
         Register()
     }
     const Register = async ()=>{
+        setLoading(true)
         await axios.post(serverUrl+"auth/register",newUserDetails)
         .then(res=>{
             if(res.status == 200) {
+                setLoading(false)
                 setNotice({...notice , show:false})
                 setSucNotice(true)
                 setNewUserDetails({
@@ -72,9 +75,11 @@ export default function Register() {
                 }) & setRePass("")
                 return true
             }
+            setLoading(false)
         })
         .catch(res => {
             console.log(res)
+            setLoading(false)
             if(res.response.status == 409){
                 return onNotice("User already exists!")
             }
@@ -113,7 +118,7 @@ export default function Register() {
                     <div className="alert alert-success shadow-lg cursor-pointer max-w-max pr-10 mt-2" data-aos="zoom-in">
                         <div>
                             <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                            <span>Click on me go to Login Page</span>
+                            <span>Click on me to Login Page</span>
                         </div>
                     </div>
                 </Link>
@@ -130,13 +135,13 @@ export default function Register() {
                         <div className="form-control">
                             <label className="input-group ">
                                 <span>Name</span>
-                                <div className="flex">
-                                <input type="text" placeholder="First Name" className="input input-bordered" onChange={e=> {
+                                <div className="flex w-full">
+                                <input type="text" placeholder="First Name" className="input input-bordered w-1/2 !rounded-none"  onChange={e=> {
                                     setNewUserDetails({...newUserDetails , firstName : e.target.value})
                                 }} 
                                 value={newUserDetails.firstName}
                                 />
-                                <input type="text" placeholder="Last Name" className="input input-bordered" onChange={e=> {
+                                <input type="text" placeholder="Last Name" className="input input-bordered w-1/2 " onChange={e=> {
                                     setNewUserDetails({...newUserDetails , lastName : e.target.value})
                                 }} 
                                 value={newUserDetails.lastName}
@@ -191,9 +196,16 @@ export default function Register() {
                         </div>
 
 
-                        <p className="text-sm text-gray-500">Already have an account ? <Link href="/user/login" ><span className="text-blue-700 font-semibold cursor-pointer">Click Here</span></Link></p>
-                        <div className="card-actions justify-end">
-                            <button className="btn btn-primary px-14 " onClick={checkInFill}>Register</button>
+                        
+                        <div className="card-actions justify-end items-end gap-0">
+                            <div className="card-actions gap-0">
+                                <p className="text-sm text-gray-500">Already have an account ?</p>
+                                <Link href="/user/login" ><button className="btn px-14 w-full">Login</button></Link>
+                            </div>
+                            <div class="divider lg:divider-horizontal"></div>
+                            {!isLoading ? 
+                            (<button className="btn btn-primary px-14 " onClick={checkInFill}>Register</button>) : 
+                            (<button className="btn btn-primary px-[4.6rem] loading " disabled></button>)}
                         </div>
                 </div>
             </section>

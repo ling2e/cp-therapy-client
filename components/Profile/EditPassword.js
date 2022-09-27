@@ -11,9 +11,11 @@ export default function EditPassword({userId}){
         newPass : "",
         rePass : ""
     })
+    const [isLoading , setLoading] = useState(false)
 const [alert, setAlert] =useState({show:false,type:"success",desc:"Ok"}) 
 
     const doUpdate = ()=>{
+        setLoading(true)
         if(checkRepeatPass()) return setAlert({...alert , show:true , type:"warning",desc:"Password and Repeat Password is not same!"});
         axios.put(serverUrl+"profile/password/"+userId , password)
             .then(res =>{
@@ -23,9 +25,11 @@ const [alert, setAlert] =useState({show:false,type:"success",desc:"Ok"})
                         router.reload()
                     }
                 }
+                setLoading(false)
             })
             .catch(err=>{
                 if(err.response.status == 403) return setAlert({...alert , show:true , type:"error",desc:"Old Password is not match!"})
+                setLoading(false)
                 setAlert({...alert , show:true , type:"error",desc:"Something wrong!"})
             })
     }
@@ -58,7 +62,10 @@ const [alert, setAlert] =useState({show:false,type:"success",desc:"Ok"})
             <div className="divider"></div>
             <div className="flex gap-x-4 justify-end">
                 <input type="button" value="Cancel" className="btn btn-warning" onClick={e=>router.reload()}/>
-                <input type="button" value="Save" className="btn btn-success" onClick={e=>{doUpdate()}}/>    
+                {!isLoading ? 
+                <input type="button" value="Save" className="btn btn-success" onClick={e=>{doUpdate()}}/>     : 
+                <input type="button" value="Saving..." className="btn btn-success" disabled />    
+                }
             </div>
         </div>
     </>)

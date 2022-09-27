@@ -11,10 +11,11 @@ export default function EditAvatar({data}){
     const [avatarSrc , setAvatarSrc] = useState(data.avatar)
     const router = useRouter()
     const [alert, setAlert] =useState({show:false,type:"success",desc:"Ok"}) 
+    const [isLoading , setLoading] = useState(false)
 
     const avatarPreShow = (e) =>{
         let inp_data = document.getElementById("inp_userAvatar")
-        let newAvatarType = inp_data.files[0].type.toString().replace("image/","")
+        let newAvatarType = inp_data.files[0]?.type.toString().replace("image/","")
         let avatarTypeSup = ["jpeg","png"]
         if(!avatarTypeSup.includes(newAvatarType)) return setAlert({...alert , show:true , type:"Warning",desc:"Image Type is Not support!"})
 
@@ -31,6 +32,7 @@ export default function EditAvatar({data}){
         reader.readAsDataURL(e.files[0])
     }
     const btnSave = () =>{
+        setLoading(true)
         let inp_data = document.getElementById("inp_userAvatar")
         let newAvatar = inp_data.files[0]
         axios.put(serverUrl+"profile/avatar/"+data._id,{files : newAvatar},{
@@ -45,20 +47,32 @@ export default function EditAvatar({data}){
                         router.reload()
                     }
                 }
+                setLoading(false)
             })
-            .catch(err=>setAlert({...alert , show:true , type:"error",desc:"Something wrong !"})
-            )
+            .catch(err=>{
+                setLoading(false)
+                setAlert({...alert , show:true , type:"error",desc:"Something wrong !"})
+            })
     }
     return(<>
         {alert.show? (<Alert type={alert.type} onClick={e=>setAlert({...alert , show:false})}>{alert.desc}</Alert>):""}
 
         <form action="" method="post" id="formUserAvatar" className="w-full flex gap-x-8 justify-between flex-wrap">
-            {hvChange ? (<>
                 <div className="w-full flex justify-end gap-x-4 ">
+                {hvChange ? (<>
                     <input type="button" className="btn btn-warning" value={"Cancel"} onClick={e=>router.reload()}/>
-                    <input type="button" className="btn btn-primary" value={"Save"} onClick={e=>btnSave()}/>
+                    {!isLoading ? 
+                        <input type="button" className="btn btn-primary" value={"Save"} onClick={e=>btnSave()}/>:
+                        <input type="button" className="btn btn-primary" value={"Saving..."} disabled/>
+                    }
+                    </>):
+                    (<>
+                    <input type="button" className="btn btn-warning" value={"Cancel"} disabled/>
+                    <input type="button" className="btn btn-primary" value={"Save"} disabled/>
+                    </>)
+                    }
                 </div>
-            </>):""}
+            
             <div className="divider w-full mb-4"></div>
             <div className="w-full flex gap-5 justify-center">
                 <div className="avatar w-3/5 flex-wrap gap-y-3">

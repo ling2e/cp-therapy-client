@@ -19,14 +19,17 @@ export default function VideoId() {
     const [onLoading ,setOnLoading]=useState(true)
     
     const [editMode , setEditMode] = useState(false)
-
+    const [isLoading , setLoading] = useState(false)
 
     const deleteFun = (id)=>{
+        setLoading(true)
         axios.delete(serverUrl+"videos/"+id)
             .then(res=> {
                 router.reload()
             })
             .catch(err=>console.log(err))
+        setLoading(false)
+        
     }
     if(id!= undefined){
         if(!data){
@@ -43,7 +46,9 @@ export default function VideoId() {
         if(data) {
             return(
                 <>
-                    <Head><title>{data.title}</title></Head>
+                    <Head>
+                        <title>{data.title}</title>
+                        </Head>
 
                     <section className="container mx-auto py-6 min-h-screen">
                         <article className="flex flex-wrap lg:flex-nowrap justify-between">
@@ -57,7 +62,8 @@ export default function VideoId() {
                                 </>):(<>
                                     <h3 className="font-bold text-xl">{data.title}</h3>
                                     <div className="divider"></div>
-                                    <p>{data.description}</p>
+                                    <div className="ql-editor h-[17.5rem] overflow-y-scroll" dangerouslySetInnerHTML={{__html:data.description}}>
+                                    </div>
                                     <div className="divider w-full"></div>
                                     <div className="p-4 pt-0 text-sm text-gray-700 font-semibold ">
                                         <p onClick={e=>router.push("/user/"+data.author)}>By : {data.author}</p>
@@ -69,7 +75,10 @@ export default function VideoId() {
                                         data.userId == userCxt.userId ? (<>
                                             <div className="flex justify-end gap-2  w-full">
                                                 <input type="button" className="btn btn-warning" value={"Edit"} onClick={e=>setEditMode(true)} />
-                                                <input type="button" className="btn btn-error" value={"Delete"} onClick={e=>deleteFun(data._id)} />
+                                                {!isLoading ? 
+                                                <input type="button" className="btn btn-error" value={"Delete"} onClick={e=>deleteFun(data._id)} /> : 
+                                                <input type="button" className="btn btn-error" value={"Loading"} disabled />
+                                                }
                                             </div>
                                         </>):""
                                     ):""}
